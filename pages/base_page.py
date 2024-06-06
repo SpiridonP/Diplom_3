@@ -45,6 +45,15 @@ class BasePage:
     def check_price(self, locator):
         assert self.driver.find_element(*locator).text != 0
 
+    def check_source(self, locator):
+        assert self.driver.find_element(*locator).text in self.driver.page_source
+
+    def compare(self, locator):
+        assert '0' in self.driver.find_element(*locator).text
+
+    def increase(self, value_one, value_two):
+        assert value_one != value_two
+
 
 
 

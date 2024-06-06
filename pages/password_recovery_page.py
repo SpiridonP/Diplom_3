@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
-from selenium.webdriver.common.keys import Keys
 import allure
 import data
 import time
@@ -15,8 +14,8 @@ class RecoveryPassword(BasePage):
     EYE_BUTTON = (By.XPATH, ".//div[contains(@class,'input__icon')]")
     BUTTON_SAVE = (By.XPATH, './/fieldset/button[text()="Сохранить"]')
 
-
-
+    @allure.title('Проверка кнопки "Восстановить пароль')
+    @allure.step('Нажать на кнопку "Восстановить пароль"')
     def click_password_recovery(self):
         user_account = self.wait_and_find(self.LK)
         user_account.click()
@@ -24,10 +23,12 @@ class RecoveryPassword(BasePage):
         password_recovery.click()
         time.sleep(1)
 
+    @allure.step('Проверка текста страницы восстановления')
     def recovery_page(self):
         self.check(data.ASSERTS.recovery_page)
 
-
+    @allure.title('Проверка отправки на email')
+    @allure.step('Вписать в поле email и нажать на "Восстановить"')
     def send_email_and_click_buttonRecovery(self):
         user_account = self.wait_and_find(self.LK)
         user_account.click()
@@ -38,8 +39,8 @@ class RecoveryPassword(BasePage):
         button_recovery = self.wait_and_find(self.BUTTON_RECOVERY)
         button_recovery.click()
 
-
-
+    @allure.title('Проверка нового пароля')
+    @allure.step('После отправки на email ввести пароль и нажать на иконку глаза"')
     def send_new_password(self):
         user_account = self.wait_and_find(self.LK)
         user_account.click()
@@ -57,7 +58,7 @@ class RecoveryPassword(BasePage):
         eye.click()
         time.sleep(3)
 
-
+    @allure.title('Проверка нового пароля (пароль виден)')
     def check_save(self):
         self.check(data.ASSERTS.save)
 
