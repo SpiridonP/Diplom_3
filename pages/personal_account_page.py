@@ -2,7 +2,7 @@ from pages.base_page import BasePage
 from page_locators import locators
 import allure
 import data
-import time
+
 
 
 class Account(BasePage):
