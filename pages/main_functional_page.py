@@ -4,12 +4,11 @@ import allure
 import data
 from seletools.actions import drag_and_drop
 
-
 class MainFunctional(BasePage):
     @allure.title('Проверка перехода в конструктор')
     @allure.step('Нажимаем на кнопку "Конструктора"')
     def go_to_constructor(self):
-        button_personal_account = self.wait_and_find(locators.MainFunctionalLocators.LK)
+        button_personal_account = self.wait_and_find(locators.AccountLocators.LK)
         button_personal_account.click()
         button_constructor = self.wait_and_find(locators.MainFunctionalLocators.BUTTON_CONSTRUCTOR)
         button_constructor.click()
@@ -21,9 +20,9 @@ class MainFunctional(BasePage):
     @allure.title('Проверка перехода в ленту заказов')
     @allure.step('Нажимаем на кнопку "Лента заказов"')
     def go_to_tape_order(self):
-        tape = self.wait_and_find(locators.MainFunctionalLocators.ORDER_TAPE)
+        tape = self.wait_and_find(locators.TapePageLocators.ORDER_TAPE)
         tape.click()
-        self.wait_and_find(locators.MainFunctionalLocators.ALL_TIME)
+        self.wait_and_find(locators.TapePageLocators.ALL_TIME_COUNTER)
 
     @allure.title('Проверка текста на странице ленты заказов')
     def check_tape_page(self):
@@ -65,13 +64,13 @@ class MainFunctional(BasePage):
     @allure.title('Проверка заказа авторизованного пользователя')
     @allure.step('Авторизоваться и "сделатиь заказ"')
     def get_order_with_auth(self):
-        button_go_to_account = self.wait_and_find(locators.MainFunctionalLocators.ACCOUNT)
+        button_go_to_account = self.wait_and_find(locators.AccountLocators.ACCOUNT)
         button_go_to_account.click()
-        email = self.wait_and_find(locators.MainFunctionalLocators.EMAIL_INPUT)
+        email = self.wait_and_find(locators.AccountLocators.EMAIL_INPUT)
         email.send_keys(data.HELPERS.email_for_test)
-        password = self.wait_and_find(locators.MainFunctionalLocators.PASSWORD_INPUT)
+        password = self.wait_and_find(locators.AccountLocators.PASSWORD_INPUT)
         password.send_keys(data.HELPERS.password)
-        button_log_in = self.wait_and_find(locators.MainFunctionalLocators.LOG_IN_BUTTON)
+        button_log_in = self.wait_and_find(locators.AccountLocators.LOG_IN_BUTTON)
         button_log_in.click()
         source = self.wait_and_find(locators.MainFunctionalLocators.BULKA)
         target = self.wait_and_find(locators.MainFunctionalLocators.CONSTR)

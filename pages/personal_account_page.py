@@ -63,7 +63,4 @@ class Account(BasePage):
         history_orders_button = self.wait_and_find(locators.AccountLocators.ORDERS_HISTORY)
         history_orders_button.click()
 
-    @allure.title('Проверка url страницы')
-    def check_url_page(self):
-        self.check_url()
 
